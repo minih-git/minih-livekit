@@ -1,0 +1,25 @@
+# LiveKit 服务器配置 - 修正版
+
+# API 密钥配置 (保持和你 docker-compose 里的 SIP 环境变量一致)
+keys:
+  devkey: devsecret_minih_livekit_2026_secure_key
+
+# API/WebSocket 端口
+port: 7880
+# 绑定所有网卡，确保 Docker 外部能访问
+bind_addresses:
+  - ""
+
+# WebRTC 配置
+rtc:
+  # UDP/TCP 端口范围
+  port_range_start: 51000
+  port_range_end: 51200
+  use_external_ip: false
+
+redis:
+  address: redis:6379
+
+# 日志级别
+logging:
+  level: debug

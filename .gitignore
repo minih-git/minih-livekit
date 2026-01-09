@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+.uv/
+
+# uv
+uv.lock
+
+# ASR 模型文件（太大不提交）
+agent/src/models/*.onnx
+
+# Node.js
+node_modules/
+dist/
+.npm
+
+# Tauri
+app/src-tauri/target/
+app/src-tauri/gen/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# 环境变量
+.env
+.env.local
+.env.*.local
+
+# 日志
+*.log
+logs/
+
+# 构建产物
+*.egg-info/
+build/
+
+# 用户数据
+recordings/
+data/
+
+
+reference/
+# Debug
+agent/asr_debug/
+agent/debug_records/
+
+# Server binaries
+server/livekit/
+server/sip/
+server/livekit-sip

@@ -1,0 +1,42 @@
+# LiveKit Server Docker Compose 配置
+# 用于本地开发环境
+
+services:
+  livekit:
+    image: livekit/livekit-server:v1.9.7
+    container_name: minih-livekit-server
+    command: --config /livekit.yaml
+    ports:
+      # WebSocket / HTTP API
+      - "7880:7880"
+      # WebRTC 媒体流端口 (UDP + TCP)
+      - "51000-51200:51000-51200/udp"
+      - "51000-51200:51000-51200/tcp"
+    volumes:
+      - ./livekit.yaml:/livekit.yaml:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:7880"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - livekit_network
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --save 60 1 --loglevel warning
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - livekit_network
+
+networks:
+  livekit_network:
+    name: livekit_network
+    driver: bridge
+
+volumes:
+  redis_data:

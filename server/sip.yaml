@@ -1,0 +1,18 @@
+# SIP 本地运行配置
+logging:
+  level: debug
+
+# LiveKit 凭据
+api_key: devkey
+api_secret: devsecret_minih_livekit_2026_secure_key
+
+redis:
+  address: 127.0.0.1:6379
+
+sip_port: 5060
+rtp_port_range:
+  start: 10000
+  end: 10200
+
+# 核心链接
+ws_url: ws://127.0.0.1:7880
