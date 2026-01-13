@@ -95,9 +95,9 @@ class LocalASR:
 
         # 调试录音配置
         self._audio_buffer = []  # 仅用于保存文件调试
-        # 使用相对路径，避免硬编码
-        self.debug_dir = Path("debug_records")
-        self.debug_dir.mkdir(parents=True, exist_ok=True)
+        # 调试目录：支持环境变量配置，延迟创建避免启动阻塞
+        self.debug_dir = Path(os.environ.get("ASR_DEBUG_DIR", "/tmp/asr_debug"))
+        self._debug_dir_initialized = False
 
         logger.info("ASR 引擎初始化完成 (带 VAD 预读缓冲)")
 
@@ -117,6 +117,15 @@ class LocalASR:
             return
 
         try:
+            # 延迟创建调试目录
+            if not self._debug_dir_initialized:
+                try:
+                    self.debug_dir.mkdir(parents=True, exist_ok=True)
+                    self._debug_dir_initialized = True
+                except OSError as e:
+                    logger.warning(f"无法创建调试目录 {self.debug_dir}: {e}，跳过保存")
+                    return
+
             # 拼接音频数据
             audio_data = np.concatenate(self._audio_buffer)
             # float32 [-1, 1] -> int16

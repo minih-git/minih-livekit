@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "AI 实时语音交互系统 - Python Agent"
 requires-python = ">=3.12"
 dependencies = [
+    "av>=14.0.0, <16.0.0",
     "livekit-api>=0.7.0",
     "sherpa-onnx>=1.10.0",
     "openai>=1.0.0",

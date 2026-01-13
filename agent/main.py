@@ -144,7 +144,7 @@ def main():
     os.environ["AGENT_NAME"] = agent_name
 
     # Dev 模式下的后台服务
-    if len(sys.argv) > 1 and sys.argv[1] == "all":
+    if len(sys.argv) > 1 and sys.argv[1] == "dev":
         logger.info("🚀 正在初始化所有服务...")
 
         # 安全启动 Token Server (带端口检测)

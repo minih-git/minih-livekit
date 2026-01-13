@@ -14,5 +14,12 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+    host: '0.0.0.0',
+    proxy: {
+      '/api': {
+        target: 'http://121.5.28.27:8081',
+        changeOrigin: true,
+      },
+    },
   },
 });

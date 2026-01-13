@@ -27,7 +27,7 @@ import { start, stop } from "tauri-plugin-keepawake-api";
 import "./App.css";
 
 // LiveKit 服务器地址
-const LIVEKIT_URL = import.meta.env.PUBLIC_LIVEKIT_URL || "ws://localhost:7880";
+const LIVEKIT_URL = import.meta.env.PUBLIC_LIVEKIT_URL || "ws://121.5.28.27:7880";
 
 /**
  * 字幕条目类型定义
@@ -59,7 +59,7 @@ interface HistoryMessage {
 
 // API 基础地址
 const API_BASE =
-  import.meta.env.PUBLIC_TOKEN_SERVER_URL || "http://localhost:8080";
+  import.meta.env.PUBLIC_TOKEN_SERVER_URL || "http://121.5.28.27:8081";
 
 /**
  * 历史记录模态框组件
@@ -110,9 +110,8 @@ function HistoryModal({ onClose }: { onClose: () => void }) {
               sessions.map((s) => (
                 <div
                   key={s.id}
-                  className={`history-session-item ${
-                    selectedSession === s.id ? "active" : ""
-                  }`}
+                  className={`history-session-item ${selectedSession === s.id ? "active" : ""
+                    }`}
                   onClick={() => loadSession(s.id)}
                 >
                   <div className="session-time">
@@ -370,7 +369,7 @@ function ConnectedRoom({ onDisconnect }: { onDisconnect: () => void }) {
     initKeepAwake();
 
     return () => {
-      stop().catch(() => {});
+      stop().catch(() => { });
     };
   }, []);
 
@@ -434,9 +433,8 @@ function ConnectedRoom({ onDisconnect }: { onDisconnect: () => void }) {
           {transcripts.map((item) => (
             <div
               key={item.id}
-              className={`transcript-item ${item.participant} ${
-                item.isFinal ? "final" : "partial"
-              }`}
+              className={`transcript-item ${item.participant} ${item.isFinal ? "final" : "partial"
+                }`}
             >
               <span className="transcript-text">{item.text}</span>
             </div>

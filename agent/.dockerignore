@@ -1,28 +1,92 @@
-__pycache__
+# Python
+__pycache__/
 *.pyc
 *.pyo
 *.pyd
 .Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+
+# Virtual environments
 env/
 venv/
 .venv/
 pip-log.txt
 pip-delete-this-directory.txt
+
+# Testing
 .tox/
+.nox/
 .coverage
 .coverage.*
 .cache
 nosetests.xml
 coverage.xml
 *.cover
+htmlcov/
+.hypothesis/
+.pytest_cache/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Git
+.git/
+.gitignore
+
+# Logs
 *.log
-.git
-.mypy_cache
-.pytest_cache
-.hypothesize
+pip-log.txt
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pytype/
+
+# Environment
 .env
-.env.local
+.env.*
+*.env
+
+# OS
 .DS_Store
+Thumbs.db
+
+# Project specific - exclude runtime data
 recordings/
 debug_records/
 asr_debug/
+data/
+*.wav
+*.db
+
+# Models - downloaded during build
+src/models/*.onnx
+src/models/*.txt
+
+# Documentation
+*.md
+docs/
+
+# Docker
+Dockerfile*
+docker-compose*
+.docker/
+
+# Misc
+*.bak
+*.tmp
+*.temp
