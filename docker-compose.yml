@@ -56,6 +56,23 @@ services:
     networks:
       - livekit_network
 
+  app:
+    build: ./app
+    container_name: minih-livekit-app
+    restart: unless-stopped
+    ports:
+      # HTTP Access
+      - "3000:80"
+    environment:
+      # Internal backend service address for Nginx proxying
+      - PUBLIC_API_PROXY_TARGET=http://agent:8080
+      # LiveKit server address for the client (browser) to connect to
+      - PUBLIC_LIVEKIT_URL=${PUBLIC_LIVEKIT_URL:-ws://localhost:7880}
+      # Leave empty to use relative paths (proxying through Nginx /api)
+      - PUBLIC_TOKEN_SERVER_URL=
+    networks:
+      - livekit_network
+
 networks:
   livekit_network:
     name: minih_livekit_net

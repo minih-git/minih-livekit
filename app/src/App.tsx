@@ -26,8 +26,13 @@ import { fetchToken, generateParticipantId } from "./api/token";
 import { start, stop } from "tauri-plugin-keepawake-api";
 import "./App.css";
 
-// LiveKit 服务器地址
-const LIVEKIT_URL = import.meta.env.PUBLIC_LIVEKIT_URL || "ws://121.5.28.27:7880";
+// LiveKit 服务器地址 
+// 优先使用环境变量，否则根据当前 URL 自动推断
+const LIVEKIT_URL =
+  window.__ENV__?.PUBLIC_LIVEKIT_URL ||
+  (window.location.protocol === "https:" ? "wss://" : "ws://") +
+  window.location.host +
+  "/ws";
 
 /**
  * 字幕条目类型定义
@@ -58,8 +63,7 @@ interface HistoryMessage {
 }
 
 // API 基础地址
-const API_BASE =
-  import.meta.env.PUBLIC_TOKEN_SERVER_URL || "http://121.5.28.27:8081";
+const API_BASE = ".";
 
 /**
  * 历史记录模态框组件

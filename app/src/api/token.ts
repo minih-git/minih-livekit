@@ -4,8 +4,9 @@
  */
 
 // Token 服务器地址（开发环境）
-const TOKEN_SERVER_URL =
-  import.meta.env.PUBLIC_TOKEN_SERVER_URL || "http://localhost:8080";
+// Token 服务器地址（开发环境）
+// 优先使用 window.__ENV__ 中的配置，即使是空字符串（表示使用相对路径）
+const TOKEN_SERVER_URL = ".";
 
 /**
  * Token 响应接口
